@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0e1111;
+  align-content: center;
 }
 
 code {
@@ -29,6 +30,7 @@ input {
   right: 45%;
   top: 50%;
   font-size: 26px;
+  text-align: center;
 }
 
 .labelPass {
@@ -36,8 +38,9 @@ input {
   color: #ffcc00;
   align-content: center;
   right: 45%;
-  top: 55%;
+  top: 62%;
   font-size: 26px;
+  text-align: center;
 }
 
 button {
@@ -50,12 +53,12 @@ button {
   font-size: large;
   width: 150px;
   height: 50px;
-  right: 50%;
-  top: 65%;
+  right: 49%;
+  top: 75%;
 }
 
 img {
   position: absolute;
-  right: 47%;
+  right: 46%;
   top: 15%;
 }

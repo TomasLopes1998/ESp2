@@ -28,7 +28,8 @@ class Login extends Component {
         />
         <form>
           <label className="labelLogin">
-            Login
+            Username:
+            <br />
             <input
               className="input"
               type="text"
@@ -38,7 +39,8 @@ class Login extends Component {
           </label>
           <br />
           <label className="labelPass">
-            Password
+            Password:
+            <br />
             <input
               className="input"
               type="password"
@@ -55,7 +57,7 @@ class Login extends Component {
               this.state.password
             )}
           >
-            submit
+            Login
           </button>
         </form>
       </div>
