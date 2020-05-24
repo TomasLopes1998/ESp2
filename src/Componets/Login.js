@@ -1,13 +1,8 @@
+
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Mainpage from './mainPage'
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams
   } from "react-router-dom";
 
 class Login extends React.Component {
@@ -15,13 +10,14 @@ class Login extends React.Component {
         super(props);
         this.state = {login : '', password : ''}
 
-        this.handleLoginChange = this.changeLogin.bind(this);
-        this.handlePasswordChange = this.changePassword.bind(this);
-    }
 
-    changeLogin(event) {
-        this.setState({ login : event.target.value })
-    }
+    this.handleLoginChange = this.changeLogin.bind(this);
+    this.handlePasswordChange = this.changePassword.bind(this);
+  }
+
+  changeLogin(event) {
+    this.setState({ login: event.target.value });
+  }
 
     changePassword(event) {
         this.setState({ password : event.target.value })
@@ -39,18 +35,18 @@ class Login extends React.Component {
 }
 
 class Page extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {token : undefined, errormessage : undefined };
-    }
+  constructor(props) {
+    super(props);
+    this.state = { token: undefined, errormessage: undefined };
+  }
 
-    authenticated(token) {
-        this.setState({ token : token, errormessage : undefined })
-    }
+  authenticated(token) {
+    this.setState({ token: token, errormessage: undefined });
+  }
 
-    failedauthenticated() {
-        this.setState({ token : undefined, errormessage : 'Authentication Error' })
-    }
+  failedauthenticated() {
+    this.setState({ token: undefined, errormessage: "Authentication Error" });
+  }
 
     doLogin(login, password) {
         var theobject = this
