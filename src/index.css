@@ -118,3 +118,9 @@ input {
     border-radius: 50%;
   }
 }
+
+audio {
+  position: absolute;
+  left: 39%;
+  bottom: 10%;
+}
