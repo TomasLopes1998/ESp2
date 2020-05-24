@@ -1,6 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Mainpage from './mainPage'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+  } from "react-router-dom";
 
-class Login extends Component{
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {login : '', password : ''}
@@ -17,9 +27,8 @@ class Login extends Component{
         this.setState({ password : event.target.value })
     }
 
-
-    render(){
-        return(
+    render () {
+        return (
             <form>
                 Login <input type="text" value={this.state.login} onChange={this.handleLoginChange}/> <br/>
                 Password <input type="password" value={this.state.password} onChange={this.handlePasswordChange}/> <br/>
@@ -27,7 +36,6 @@ class Login extends Component{
             </form>
         )
     }
-
 }
 
 class Page extends React.Component {
@@ -50,10 +58,10 @@ class Page extends React.Component {
             method: 'POST', // or 'PUT'
             body: JSON.stringify({'login' : login, 'password' : password}),
             headers:{
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
             }
         }
-  fetch(this.props.loginserver, formparameters).then(function(data) {
+  fetch(" https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/login", formparameters).then(function(data) {
             if(data.status!==200) {
                 theobject.failedauthenticated()
                 throw new Error(data.status)
@@ -80,11 +88,17 @@ class Page extends React.Component {
         if (this.state.token == undefined)
             return (
                 <div>
+                    <h1>Welcome to ESUber</h1>
                     {errormessage}
                     <Login parent={this} login={this.doLogin}/>
                 </div>
             )
+        else
+            return(
+                <Router>
+                    <Mainpage/>
+                </Router>
+            )
     }
 }
-
 export default Page;
