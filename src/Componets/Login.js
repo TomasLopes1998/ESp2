@@ -77,11 +77,11 @@ class Page extends React.Component {
 
     render() {
         console.log(this.state.token)
-        if (this.state.errormessage != undefined)
+        if (this.state.errormessage !== undefined)
             var errormessage = <h2>{this.state.errormessage}</h2>
         else
-            var errormessage = <div/>
-        if (this.state.token == undefined)
+            errormessage = <div/>
+        if (this.state.token === undefined)
             return (
                 <div>
                     <h1>Welcome to ESUber</h1>
