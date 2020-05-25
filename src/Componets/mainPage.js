@@ -24,6 +24,14 @@ class MainPage extends React.Component {
     this.button_stop = React.createRef();
   }
 
+  handleClick() {
+    this.setState((previousState) => {
+      return {
+        isRecording: !previousState.isRecording,
+      };
+    });
+  }
+
   componentDidMount() {
     navigator.getUserMedia(
       { audio: true },
@@ -61,6 +69,31 @@ class MainPage extends React.Component {
   };
 
   render() {
+    const isRecordingButton = (
+      <button
+        className="buttonMenu"
+        style={visible_style}
+        onClick={this.stop}
+        disabled={!this.state.isRecording}
+        ref={this.button_stop}
+      >
+        Stop
+      </button>
+    );
+    const isNotRecordingButton = (
+      <div>
+        <button
+          className="buttonMenu"
+          style={visible_style}
+          onClick={this.start}
+          disabled={this.state.isRecording}
+          ref={this.button_record}
+        >
+          Record
+        </button>
+      </div>
+    );
+
     return (
       <>
         <div className="body">
@@ -74,25 +107,10 @@ class MainPage extends React.Component {
               />
             </div>
           </nav>
-          <button className="backbuttonMenu"></button>
-          <button
-            className="buttonMenu"
-            style={visible_style}
-            onClick={this.start}
-            disabled={this.state.isRecording}
-            ref={this.button_record}
-          >
-            Record
-          </button>
-          <button
-            className="buttonMenu"
-            style={hidden_style}
-            onClick={this.stop}
-            disabled={!this.state.isRecording}
-            ref={this.button_stop}
-          >
-            Stop
-          </button>
+          <button className="backbuttonMenu">Go Back</button>
+          <div onClick={this.handleClick.bind(this)}>
+            {this.state.isRecording ? isRecordingButton : isNotRecordingButton}
+          </div>
           <audio src={this.state.blobURL} controls="controls" />
         </div>
       </>
