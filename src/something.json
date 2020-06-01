@@ -1,0 +1,8 @@
+{
+  "position": { "latitude": 40.1971143, "longitude": -8.4085713 },
+  "instruction": "Head toward <span class=\"toward_street\">Rua Pêro Vaz de Caminha</span> on <span class=\"street\">Rua Pedro Álvares Cabral</span>. <span class=\"distance-description\">Go for <span class=\"length\">153 m</span>.</span>",
+  "travelTime": 22,
+  "length": 153,
+  "id": "M21",
+  "_type": "PrivateTransportManeuverType"
+}

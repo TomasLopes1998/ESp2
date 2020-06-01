@@ -33,6 +33,15 @@ input {
   text-align: center;
 }
 
+h1{
+  color: white;
+}
+h4{
+  color: gray;
+}
+h3{
+  color: crimson;
+}
 .labelPass {
   position: absolute;
   color: #ffcc00;

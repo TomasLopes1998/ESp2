@@ -1,0 +1,10 @@
+{
+  "Drivers": [
+    { "Name": "John","rating":4},
+    { "Name": "Tomás","rating":4},
+    { "Name": "Alexandre","rating":4},
+    { "Name": "Pedro","rating":4},
+    { "Name": "Duarte","rating":4},
+    { "Name": "Flavs","rating":4}
+  ]
+}
