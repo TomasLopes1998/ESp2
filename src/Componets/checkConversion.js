@@ -193,14 +193,14 @@ class checkConvertion extends React.Component {
     console.log("File a enviar   " + this.state.fileName);
     var formparameters = {
       method: "POST", // or 'PUT'
-      //body: JSON.stringify({ file_name: this.state.fileName }),
-      body: JSON.stringify({ file_name: "test973167379" }),
+      body: JSON.stringify({ file_name: this.state.fileName }),
+      //body: JSON.stringify({ file_name: "test973167379" }), 
       headers: {
         "Content-Type": "application/json",
       },
     };
     fetch(
-      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/getjson",
+      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/json",
       formparameters
     )
       .then((resp) => {
@@ -237,7 +237,7 @@ class checkConvertion extends React.Component {
       },
     };
     fetch(
-      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/getcoord",
+      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/coord",
       formparameters
     )
       .then((resp) => {
@@ -293,7 +293,7 @@ class checkConvertion extends React.Component {
       },
     };
     fetch(
-      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/getdriver",
+      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/driver",
       formparameters
     )
       .then((resp) => {
@@ -363,7 +363,7 @@ class checkConvertion extends React.Component {
       },
     };
     fetch(
-      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/getpathwithdirections",
+      "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/pathwithdirections",
       formparameters
     )
       .then((resp) => {

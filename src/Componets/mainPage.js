@@ -1,7 +1,7 @@
 import React from "react";
 import MicRecorder from "mic-recorder-to-mp3";
-import {BrowserRouter as Router} from 'react-router-dom';
-import CheckConvertion from "./checkConversion"
+import { BrowserRouter as Router } from "react-router-dom";
+import CheckConvertion from "./checkConversion";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -13,8 +13,8 @@ const s3 = new AWS.S3({
   accessKeyId: "ASIAQ7GA5VOFXW7GRZZP",
   secretAccessKey: "2wGtEIY7ASc27EZRoU97olJhAMAuJ4AvNtTvya2r",
   sessionToken:
-    "FwoGZXIvYXdzENn//////////wEaDBHKFowhhopHmwJQyCLJAR/r9emhrcRXMdwZnyzwQjuAsRSXr7HpbtSE45D01wM3+DVZCtquH2UULH+FoH1/KZh+HrMtfxK0PEYsLplED/8M6g2qOkAxPO6V/sIuojeu5EsEzZ6leXRPKIN6dzlt1LiWTR9o9/vdlWdAjY5hnvhnAM8Nfv72ItUcBl6tLJ+xUR3b1jT+fjyTJIpPXh0J+Q3oCtqJuY3tJkXlHhKZg6Q6ZOOo0GGHinOEmszvDWpVUohf6gcINg9mLJ5sG7deDGajFKxBojUs7SjCpc/2BTItymQ1/8zAeEQ+4sj8aG14k14n1WdsAkW+gA0OtZ9JEBRONJHHT0ArrqWXRP7C"
-  });
+    "FwoGZXIvYXdzENn//////////wEaDBHKFowhhopHmwJQyCLJAR/r9emhrcRXMdwZnyzwQjuAsRSXr7HpbtSE45D01wM3+DVZCtquH2UULH+FoH1/KZh+HrMtfxK0PEYsLplED/8M6g2qOkAxPO6V/sIuojeu5EsEzZ6leXRPKIN6dzlt1LiWTR9o9/vdlWdAjY5hnvhnAM8Nfv72ItUcBl6tLJ+xUR3b1jT+fjyTJIpPXh0J+Q3oCtqJuY3tJkXlHhKZg6Q6ZOOo0GGHinOEmszvDWpVUohf6gcINg9mLJ5sG7deDGajFKxBojUs7SjCpc/2BTItymQ1/8zAeEQ+4sj8aG14k14n1WdsAkW+gA0OtZ9JEBRONJHHT0ArrqWXRP7C",
+});
 
 const logostyle = {
   width: "100px",
@@ -98,27 +98,32 @@ class MainPage extends React.Component {
         return resp.json();
       })
       .then((json) => {
-        localStorage.setItem('nameOfFile',json["job_name"] );
+        localStorage.setItem("nameOfFile", json["job_name"]);
         this.setState({ data: json["job_name"] });
         console.log(json);
       });
   };
   sendToS3 = () => {
     var uploadParams = { Bucket: "audiosbucket1", Key: "audio.mp3", Body: "" };
-    var fileStream = this.state.audioBlob;
-    uploadParams.Body = fileStream;
-    s3.upload(uploadParams, function (s3Err, data) {
-      if (s3Err) throw s3Err;
-      console.log(`File uploaded successfully at ${data.Location}`);
-    });
-    this.getTranscriptionJob();
+    if (this.state.audioBlob !== "") {
+      var fileStream = this.state.audioBlob;
+      uploadParams.Body = fileStream;
+      s3.upload(uploadParams, function (s3Err, data) {
+        if (s3Err) throw s3Err;
+        console.log(`File uploaded successfully at ${data.Location}`);
+      });
+      this.getTranscriptionJob();
+    }
+    else{
+      this.setState({errormessage : "Por favor grave uma mensagem primeiro!"});
+    }
   };
 
   render() {
     if (this.state.data !== undefined) {
       return (
-        <Router >
-          <CheckConvertion/>
+        <Router>
+          <CheckConvertion />
         </Router>
       );
     }
