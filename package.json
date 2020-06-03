@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "interweave": "^12.5.0",
     "jsonwebtoken": "^8.5.1",
+    "markup": "0.0.4",
     "material-ui-rating": "^4.2.0",
     "mic-recorder-to-mp3": "^2.2.1",
     "node-heremaps": "0.0.2",

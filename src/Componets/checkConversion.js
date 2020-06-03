@@ -88,6 +88,10 @@ class checkConvertion extends React.Component {
       done: false,
       value: 1,
       token: localStorage.getItem("token"),
+      currentPath: "",
+      i: 0,
+      j: 0,
+      status: "",
     };
     this.button_record = React.createRef();
     this.button_stop = React.createRef();
@@ -144,6 +148,7 @@ class checkConvertion extends React.Component {
       this.getJson();
       this.setState({ newMessage: true });
     }
+    this.timeout = setInterval(this.addingLines, 3000);
   }
 
   stringToHTML = function (str) {
@@ -156,6 +161,9 @@ class checkConvertion extends React.Component {
     this.getCoord();
   };
 
+  componentWillUnmount() {
+    clearInterval(this.timeout);
+  }
   getTranscriptionJob = () => {
     var formparameters = new Headers({
       method: "GET", // or 'PUT'
@@ -394,40 +402,70 @@ class checkConvertion extends React.Component {
     this.setState({ tripRejected: true });
   };
 
-  addingLines() {
-    //document.getElementById("myP").innerHTML = txt.length;
-    var linesOfTheRoude = [];
-    var i = 0;
-    var j = 0;
+  addingLines = () => {
     console.log("I pass here!");
-    while (this.state.carToPersonRoute.length > i) {
-      linesOfTheRoude.push(
-        <h4 key={i + j + 1} value={i + j + 1}>
-          <Markup content={this.state.carToPersonRoute[i] + "<br>"}></Markup>
-        </h4>
-      );
-      i = i + 1;
+    if (this.state.carToPersonRoute.length > this.state.i) {
+      this.setState({
+        status: (
+          <h6 className="myP">
+            <Markup content={"A sua boleia vai a caminho..."}></Markup>
+          </h6>
+        ),
+      });
+      this.setState({
+        currentPath: (
+          <h6 className="myPa">
+            <Markup
+              content={this.state.carToPersonRoute[this.state.i] + "<br>"}
+            ></Markup>
+          </h6>
+        ),
+      });
+      console.log(this.state.currentPath);
+      this.setState({ i: this.state.i + 1 });
+    } else if (
+      this.state.carToPersonRoute.length === this.state.i &&
+      this.state.i !== 0
+    ) {
+      this.setState({
+        status: (
+          <h6 className="myP">
+            <Markup content={"Entrou no carro"}></Markup>
+          </h6>
+        ),
+      });
+      this.setState({
+        currentPath: (
+          <h6 className="myPa">
+            <Markup content={""}></Markup>
+          </h6>
+        ),
+      });
+      this.setState({ i: this.state.i + 1 });
+    } else {
+      if (this.state.PersonToDestinationRoute.length > this.state.j) {
+        this.setState({
+          status: (
+            <h6 className="myP">
+              <Markup content={"A chegar ao seu destino..."}></Markup>
+            </h6>
+          ),
+        });
+        this.setState({
+          currentPath: (
+            <h6 className="myPa">
+              <Markup
+                content={
+                  this.state.PersonToDestinationRoute[this.state.j] + "<br>"
+                }
+              ></Markup>
+            </h6>
+          ),
+        });
+        this.setState({ j: this.state.j + 1 });
+      }
     }
-
-    linesOfTheRoude.push(
-      <h3 key={i + j + 1} value={i + j + 1}>
-        <Markup content={"<br> Entrou no nosso Taxi <br>"}></Markup>
-      </h3>
-    );
-    while (this.state.PersonToDestinationRoute.length > j) {
-      linesOfTheRoude.push(
-        <h4 key={i + j + 2} value={i + j + 1}>
-          <Markup
-            content={this.state.PersonToDestinationRoute[j] + "<br>"}
-          ></Markup>
-        </h4>
-      );
-      j = j + 1;
-    }
-    //document.getElementById("myP").innerHTML = myStr;
-    console.log(linesOfTheRoude);
-    return linesOfTheRoude;
-  }
+  };
 
   evaluateDiver = () => {
     this.setState({ timeToEval: true });
@@ -469,7 +507,7 @@ class checkConvertion extends React.Component {
 
   render() {
     if (!this.state.fileExists) {
-      return <h1>Loading...</h1>;
+      return <h6 className="loading">Loading...</h6>;
     } else if (this.state.done) {
       return (
         <Router>
@@ -509,18 +547,20 @@ class checkConvertion extends React.Component {
         <>
           <div>
             <div className="leftColumn">
-              <h1>
+              <h6 className="textC">
                 Nome do Condutor: {this.state.driverName}
                 <br />
                 Avaliação do Condutor: {this.state.driverRating}
-              </h1>
+              </h6>
             </div>
             <div className="rightColumn">
-              <p id="myP"></p>
-              {this.addingLines()}
+              {this.state.status}
+              {this.state.currentPath}
             </div>
           </div>
-          <button onClick={this.evaluateDiver}>Terminar Viagem</button>
+          <button className="buttonT" onClick={this.evaluateDiver}>
+            Terminar Viagem
+          </button>
         </>
       );
     } else if (this.state.confirmed) {
