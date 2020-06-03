@@ -179,13 +179,19 @@ class checkConvertion extends React.Component {
 
   sendToS3 = () => {
     var uploadParams = { Bucket: "audiosbucket1", Key: "audio.mp3", Body: "" };
-    var fileStream = this.state.audioBlob;
-    uploadParams.Body = fileStream;
-    s3.upload(uploadParams, function (s3Err, data) {
-      if (s3Err) throw s3Err;
-      console.log(`File uploaded successfully at ${data.Location}`);
-    });
-    this.getTranscriptionJob();
+    if (this.state.audioBlob !== "") {
+      var fileStream = this.state.audioBlob;
+      uploadParams.Body = fileStream;
+      s3.upload(uploadParams, function (s3Err, data) {
+        if (s3Err) throw s3Err;
+        console.log(`File uploaded successfully at ${data.Location}`);
+      });
+      this.getTranscriptionJob();
+    }
+    else{
+      this.setState({errormessage : "Por favor grave uma mensagem primeiro!"});
+    }
+  };
   };
 
   getJson = () => {
