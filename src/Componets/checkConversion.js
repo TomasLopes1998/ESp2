@@ -187,11 +187,9 @@ class checkConvertion extends React.Component {
         console.log(`File uploaded successfully at ${data.Location}`);
       });
       this.getTranscriptionJob();
+    } else {
+      this.setState({ errormessage: "Por favor grave uma mensagem primeiro!" });
     }
-    else{
-      this.setState({errormessage : "Por favor grave uma mensagem primeiro!"});
-    }
-  };
   };
 
   getJson = () => {
