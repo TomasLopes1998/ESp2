@@ -18,10 +18,10 @@ var AWS = require("aws-sdk");
 AWS.config.update({ region: "us-east-1" });
 const s3 = new AWS.S3({
   apiVersion: "2006-03-01",
-  accessKeyId: "ASIAQ7GA5VOFXW7GRZZP",
-  secretAccessKey: "2wGtEIY7ASc27EZRoU97olJhAMAuJ4AvNtTvya2r",
+  accessKeyId: "ASIAQ7GA5VOF2GIKT3M3",
+  secretAccessKey: "0iUTHG95TQaRr8pCICm889FRoDBZcygocBbDTMGL",
   sessionToken:
-    "FwoGZXIvYXdzENn//////////wEaDBHKFowhhopHmwJQyCLJAR/r9emhrcRXMdwZnyzwQjuAsRSXr7HpbtSE45D01wM3+DVZCtquH2UULH+FoH1/KZh+HrMtfxK0PEYsLplED/8M6g2qOkAxPO6V/sIuojeu5EsEzZ6leXRPKIN6dzlt1LiWTR9o9/vdlWdAjY5hnvhnAM8Nfv72ItUcBl6tLJ+xUR3b1jT+fjyTJIpPXh0J+Q3oCtqJuY3tJkXlHhKZg6Q6ZOOo0GGHinOEmszvDWpVUohf6gcINg9mLJ5sG7deDGajFKxBojUs7SjCpc/2BTItymQ1/8zAeEQ+4sj8aG14k14n1WdsAkW+gA0OtZ9JEBRONJHHT0ArrqWXRP7C",
+    "FwoGZXIvYXdzEBIaDCACw4AIDIAQfugVniLJAcVpKJbM3jZQIP9LP6goPjzWMVbYWJFt4gaGZZU0RcALt2AILiPaX66Zjrt9wkMNfXjn5lfkiRxRfa6jOwvT7LP6NrMvbAWSm4gYQfRJTvW+Vkiw5BI4cHK5g6CD40LQ+Ke1LgHC6Y7SOSxLLGinGfXIejhhmM0LIMOcf4RcjFyRkVWX80wg2yxeEphKc+KsvtY0VyKBsO4GhJJ/hztWRQ2OAKOwnvt9yfNIGKLQU5dSp48DTxc43YeLYtJ0r40GDUgQT9IdvCEAHCi66Nv2BTIt5mbLrnnscyieIliXWKUXRXVrh8qXvOwcKXLrNOjwIMcQAvcJeuOmkiWzA57V",
 });
 
 const visible_style = {
@@ -193,8 +193,8 @@ class checkConvertion extends React.Component {
     console.log("File a enviar   " + this.state.fileName);
     var formparameters = {
       method: "POST", // or 'PUT'
-      body: JSON.stringify({ file_name: this.state.fileName }),
-      //body: JSON.stringify({ file_name: "test973167379" }), 
+      //body: JSON.stringify({ file_name: this.state.fileName }),
+      body: JSON.stringify({ file_name: "test973167379" }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -468,15 +468,23 @@ class checkConvertion extends React.Component {
     } else if (this.state.timeToEval) {
       return (
         <>
-          <h1>Avalie a sua viagem:</h1>
-          <select value={this.state.value} onChange={this.handleChange2}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <button onClick={this.everythingDone}>Avaliar</button>
+          <div className="card">
+            <h1 className="titleA">Avalie a sua viagem:</h1>
+            <select
+              className="selectA"
+              value={this.state.value}
+              onChange={this.handleChange2}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button className="buttonAvalie" onClick={this.everythingDone}>
+              Avaliar
+            </button>
+          </div>
         </>
       );
     } else if (this.state.tripRejected) {
@@ -488,44 +496,58 @@ class checkConvertion extends React.Component {
     } else if (this.state.tripAccepted) {
       return (
         <>
-          <h1>
-            Nome do Condutor: {this.state.driverName}
-            <br />
-            Avaliação do Condutor: {this.state.driverRating}
-          </h1>
-          <p id="myP"></p>
-          {this.addingLines()}
+          <div>
+            <div className="leftColumn">
+              <h1>
+                Nome do Condutor: {this.state.driverName}
+                <br />
+                Avaliação do Condutor: {this.state.driverRating}
+              </h1>
+            </div>
+            <div className="rightColumn">
+              <p id="myP"></p>
+              {this.addingLines()}
+            </div>
+          </div>
           <button onClick={this.evaluateDiver}>Terminar Viagem</button>
         </>
       );
     } else if (this.state.confirmed) {
       return (
         <>
-          <h1>Deseja aceitar a viagem?</h1>
-          <h2>
-            Preço: {this.state.tripPrice}
-            <br />
-            Nome do Condutor: {this.state.driverName}
-            <br />
-            Avaliação do Condutor: {this.state.driverRating}
-          </h2>
-          <button onClick={this.tripAccepted}>Aceito!</button>
-          <button onClick={this.triprefused}>Não quero esta Viagem!</button>
+          <div class="card">
+            <h5 className="titleCardD">Deseja aceitar a viagem?</h5>
+            <h2>
+              Preço: {this.state.tripPrice}
+              <br />
+              Nome do Condutor: {this.state.driverName}
+              <br />
+              Avaliação do Condutor: {this.state.driverRating}
+            </h2>
+            <button className="buttonA" onClick={this.tripAccepted}>
+              Aceito!
+            </button>
+            <button className="buttonN" onClick={this.triprefused}>
+              Não quero esta Viagem!
+            </button>
+          </div>
         </>
       );
     } else if (this.state.PossibleLocations !== undefined) {
       return (
         <div className="custom-select">
-          <select onChange={this.handleChange}>
+          <select className="selectC" onChange={this.handleChange}>
             {this.createSelectItems()}
           </select>
-          <button onClick={this.selectedLocation}>Confirm Location</button>
+          <button className="confirmLocB" onClick={this.selectedLocation}>
+            Confirm Location
+          </button>
         </div>
       );
     } else {
       const isRecordingButton = (
         <button
-          className="buttonMenu"
+          className="buttonMenuV"
           style={visible_style}
           onClick={this.stop}
           disabled={!this.state.isRecording}
@@ -537,7 +559,7 @@ class checkConvertion extends React.Component {
       const isNotRecordingButton = (
         <div>
           <button
-            className="buttonMenu"
+            className="buttonMenuV"
             style={visible_style}
             onClick={this.start}
             disabled={this.state.isRecording}
@@ -550,26 +572,34 @@ class checkConvertion extends React.Component {
       return (
         <>
           <div>
-            <h1>Verify The Location</h1>
+            <h5 className="verLoc">Verify The Location</h5>
             <StyledEdiText
               type="text"
               value={this.state.message}
               onSave={this.onSave}
             />
-            <button onClick={this.confirmed}>Confirm!</button>
+            <button className="confirmB" onClick={this.confirmed}>
+              Confirm!
+            </button>
           </div>
           <div>
             {this.state.errormessage}
-            <button className="backbuttonMenu">Go Back</button>
+            <button className="backbuttonMenuV "></button>
             <div onClick={this.handleClick.bind(this)}>
               {this.state.isRecording
                 ? isRecordingButton
                 : isNotRecordingButton}
             </div>
-            <audio src={this.state.blobURL} controls="controls" />
+            <audio
+              className="audioV"
+              src={this.state.blobURL}
+              controls="controls"
+            />
           </div>
           <div>
-            <button onClick={this.sendToS3}>Let's Go</button>
+            <button className="letsBV" onClick={this.sendToS3}>
+              Let's Go
+            </button>
           </div>
         </>
       );

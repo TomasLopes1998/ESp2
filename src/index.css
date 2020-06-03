@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0e1111;
+  background-color: #ffd9b3;
   align-content: center;
 }
 
@@ -17,37 +17,37 @@ code {
 input {
   color: white;
   border-radius: 25px;
-  border-color: #ffcc00;
-  background-color: #0e1111;
+  border-color: white;
+  background-color: #ff751a;
   font-size: 20px;
   text-align: center;
 }
 
 .labelLogin {
   position: absolute;
-  color: #ffcc00;
+  color: #ff751a;
   align-content: center;
   right: 45%;
-  top: 50%;
+  top: 40%;
   font-size: 26px;
   text-align: center;
 }
 
-h1{
+h1 {
   color: white;
 }
-h4{
+h4 {
   color: gray;
 }
-h3{
+h3 {
   color: crimson;
 }
 .labelPass {
   position: absolute;
-  color: #ffcc00;
+  color: #ff751a;
   align-content: center;
   right: 45%;
-  top: 62%;
+  top: 53%;
   font-size: 26px;
   text-align: center;
 }
@@ -55,33 +55,38 @@ h3{
 .buttonLogin {
   position: absolute;
   align-content: center;
-  color: black;
-  background-color: #ffcc00;
-  border-color: #0e1111;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
   border-radius: 25px;
   font-size: large;
   width: 150px;
   height: 50px;
-  right: 49%;
-  top: 75%;
+  right: 48.7%;
+  top: 70%;
 }
 
-.logo {
+.textLogin {
   position: absolute;
-  right: 46%;
+  right: 37.5%;
   top: 15%;
+  color: #ff751a;
+  border: #ff751a;
+  font-size: 50px;
+  text-shadow: 3px 3px white;
 }
 
 .menubar {
   width: 100%;
   height: 50px;
-  background-color: #ffcc00;
-  border: solid black;
+  background-image: linear-gradient(to left, #ff751a, white);
 }
 
-.logoBar {
+.textNav {
   position: absolute;
   left: 10%;
+  color: #ff751a;
+  bottom: 91.5%;
 }
 
 .buttonMenu {
@@ -91,7 +96,8 @@ h3{
   border-radius: 50%;
   left: 45%;
   top: 45%;
-  background-color: #ffcc00;
+  background-color: #ff751a;
+  color: white;
   border: transparent;
 }
 
@@ -106,6 +112,33 @@ h3{
   left: 45%;
   top: 45%;
   animation-name: example;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.buttonMenuV {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  left: 45%;
+  top: 70%;
+  background-color: #ff751a;
+  color: white;
+  border: transparent;
+}
+
+.backbuttonMenuV {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: transparent;
+  pointer-events: none;
+  border: solid white;
+  left: 45%;
+  top: 70%;
+  animation-name: example1;
   animation-duration: 2s;
   animation-iteration-count: infinite;
 }
@@ -127,9 +160,187 @@ h3{
     border-radius: 50%;
   }
 }
+@keyframes example1 {
+  from {
+    left: 45%;
+    top: 70%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  to {
+    left: 41.5%;
+    top: 63.5%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+}
 
 audio {
   position: absolute;
-  left: 39%;
-  bottom: 10%;
+  right: 16%;
+  bottom: 44.5%;
+}
+
+.buttonLets {
+  position: absolute;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 150px;
+  height: 50px;
+  right: 46.5%;
+  top: 75%;
+}
+
+.verLoc {
+  position: relative;
+  left: 40%;
+  font-size: 28px;
+  color: #ff751a;
+}
+
+.audioV {
+  position: absolute;
+  right: 16%;
+  bottom: 18%;
+}
+
+.confirmB {
+  position: absolute;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 150px;
+  height: 50px;
+  right: 46.5%;
+  top: 30%;
+}
+
+.letsBV {
+  position: absolute;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 150px;
+  height: 50px;
+  right: 46.5%;
+  top: 40%;
+}
+
+.custom-select {
+  position: absolute;
+  left: 30%;
+  top: 45%;
+}
+
+.selectC {
+  border: #ffd9b3;
+  border-radius: 25px;
+  font-size: 25px;
+  background-color: #ff944d;
+  color: white;
+  border-color: white;
+}
+
+.confirmLocB {
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+}
+
+.card {
+  background-color: white;
+  border-radius: 25px;
+  border-color: #ff751a;
+  border-style: solid;
+  position: absolute;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 40%;
+  height: 40%;
+  left: 32.5%;
+  top: 30%;
+  content: center;
+}
+
+.titleCardD {
+  position: relative;
+  left: 25%;
+  font-size: 25px;
+  color: #ff751a;
+}
+
+h2 {
+  color: #ff751a;
+}
+
+.buttonA {
+  position: relative;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 200px;
+  height: 50px;
+  left: 15%;
+}
+
+.buttonN {
+  position: absolute;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 200px;
+  height: 50px;
+  left: 52%;
+  bottom: 2.5%;
+}
+
+.titleA {
+  position: relative;
+  color: #ff751a;
+  left: 25%;
+}
+
+.selectA {
+  position: relative;
+  left: 30%;
+  margin-top: 10%;
+  border: solid;
+  border-color: #ff751a;
+  border-radius: 25px;
+  width: 100px;
+  height: 50px;
+}
+
+.buttonAvalie {
+  position: relative;
+  align-content: center;
+  color: white;
+  background-color: #ff751a;
+  border-color: white;
+  border-radius: 25px;
+  font-size: large;
+  width: 100px;
+  height: 50px;
+  left: 35%;
 }
