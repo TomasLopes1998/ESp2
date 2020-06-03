@@ -10,10 +10,10 @@ var AWS = require("aws-sdk");
 AWS.config.update({ region: "us-east-1" });
 const s3 = new AWS.S3({
   apiVersion: "2006-03-01",
-  accessKeyId: "ASIAQ7GA5VOF2GIKT3M3",
-  secretAccessKey: "0iUTHG95TQaRr8pCICm889FRoDBZcygocBbDTMGL",
+  accessKeyId: "ASIAQ7GA5VOFUAOYMIUY",
+  secretAccessKey: "r1y5czTxBYnhVCV38ajmvu8r8TRti0SvI4Fkh6cx",
   sessionToken:
-    "FwoGZXIvYXdzEBIaDCACw4AIDIAQfugVniLJAcVpKJbM3jZQIP9LP6goPjzWMVbYWJFt4gaGZZU0RcALt2AILiPaX66Zjrt9wkMNfXjn5lfkiRxRfa6jOwvT7LP6NrMvbAWSm4gYQfRJTvW+Vkiw5BI4cHK5g6CD40LQ+Ke1LgHC6Y7SOSxLLGinGfXIejhhmM0LIMOcf4RcjFyRkVWX80wg2yxeEphKc+KsvtY0VyKBsO4GhJJ/hztWRQ2OAKOwnvt9yfNIGKLQU5dSp48DTxc43YeLYtJ0r40GDUgQT9IdvCEAHCi66Nv2BTIt5mbLrnnscyieIliXWKUXRXVrh8qXvOwcKXLrNOjwIMcQAvcJeuOmkiWzA57V",
+    "FwoGZXIvYXdzECQaDD0EPUQwzPJ1V93T+SLJAfWi5Qnel6unVUsroTN4+seOfHhMX4a1D5LUgowbqpdVqn4Ov9mQ+ElXao6HI6MFvA2JHDPKDCXlJHwrT4+T72esu1wbj/jigEZ8Zd56WjOEU7Z2dCiwKbecq3hMDjv1HhXjuLf60rjjDUlTIzL6CqPZRaZl8UvvIIyJepihFdaIOKh/Who/5OtgJnmKkCTMjmFZWgL8DHep9NUFaJPpWCFXPzE/ZSYsdSv5c50Mz6+SuhMzbjNOl02rNeryoWWYI8bTNRg0XFbzvijd1t/2BTItrSAvF6ttco3MzaN/em7+9fLqfYv9jgxOP8w5HCItv+THnXg+fRZQ4lt6g7DQ",
 });
 
 const visible_style = {
@@ -29,6 +29,7 @@ class MainPage extends React.Component {
       isBlocked: false,
       errormessage: "",
       audioBlob: "",
+      token: "",
     };
     this.button_record = React.createRef();
     this.button_stop = React.createRef();
@@ -43,6 +44,7 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ token: localStorage.getItem("token") });
     navigator.getUserMedia(
       { audio: true },
       () => {
@@ -80,9 +82,11 @@ class MainPage extends React.Component {
   };
 
   getTranscriptionJob = () => {
+    console.log(this.state.token);
     var formparameters = {
       method: "GET", // or 'PUT'
       headers: {
+        //AuthorizationToken: this.state.token,
         "Content-Type": "application/json",
       },
     };

@@ -66,6 +66,7 @@ class Page extends React.Component {
 
   authenticated(token) {
     this.setState({ token: token, errormessage: undefined });
+    localStorage.setItem("token", token);
   }
 
   failedauthenticated() {
