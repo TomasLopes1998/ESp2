@@ -210,8 +210,8 @@ class checkConvertion extends React.Component {
         "Content-Type": "application/json",
         //"AuthorizationToken":this.state.token
       },
-      body: JSON.stringify({ file_name: "test973167379" }),
-      //body: JSON.stringify({ file_name: this.state.fileName }),
+      //body: JSON.stringify({ file_name: "test973167379" }),
+      body: JSON.stringify({ file_name: this.state.fileName }),
     };
     fetch(
       "https://jzijzhved1.execute-api.us-east-1.amazonaws.com/firstStage/json",
